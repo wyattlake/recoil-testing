@@ -11,7 +11,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <h1 className={styles.title}>Hello</h1>
+                <h1 className={styles.title}>Obnoxious and minimalist.</h1>
                 <TodoList />
             </main>
         </div>

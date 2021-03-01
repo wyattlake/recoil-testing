@@ -1,14 +1,15 @@
 import { todoItem } from "models/TodoItem";
-import React, { useState } from "react";
+import React, { HTMLProps, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { todoListState } from "state/todoList";
+import styles from "styles/Home.module.css";
 
-export const TodoItemCreator = ({}) => {
+export const TodoItemCreator: React.FC<HTMLProps<HTMLDivElement>> = (props) => {
     const [inputValue, setInputValue] = useState("");
     const setTodoList = useSetRecoilState(todoListState);
 
     const addItem = () => {
-        setTodoList((oldTodoList: todoItem[]) => [
+        setTodoList((oldTodoList) => [
             ...oldTodoList,
             {
                 id: getId(),
@@ -24,9 +25,16 @@ export const TodoItemCreator = ({}) => {
     };
 
     return (
-        <div>
-            <input type="text" value={inputValue} onChange={onChange} />
-            <button onClick={addItem}>Add</button>
+        <div {...props}>
+            <input
+                type="text"
+                value={inputValue}
+                className={styles.topCard}
+                onChange={onChange}
+            />
+            <button onClick={addItem} className={styles.addButton}>
+                Add Todo
+            </button>
         </div>
     );
 };

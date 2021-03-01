@@ -2,6 +2,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { todoListState } from "state/todoList";
 import { todoItem } from "models/TodoItem";
+import styles from "styles/Home.module.css";
 
 type TodoItemProps = {
     item: todoItem;
@@ -16,7 +17,6 @@ export const TodoItem: React.FC<TodoItemProps> = (props) => {
             ...props.item,
             text: value,
         });
-
         setTodoList(newList);
     };
 
@@ -36,18 +36,24 @@ export const TodoItem: React.FC<TodoItemProps> = (props) => {
     };
 
     return (
-        <div>
+        <div className={styles.card}>
             <input
                 type="text"
                 value={props.item.text}
                 onChange={editItemText}
+                className={styles.cardText}
             />
-            <input
-                type="checkbox"
-                checked={props.item.isComplete}
-                onChange={toggleItemCompletion}
-            />
-            <button onClick={deleteItem}>X</button>
+            <div className={styles.cardButtons}>
+                <input
+                    type="checkbox"
+                    checked={props.item.isComplete}
+                    onChange={toggleItemCompletion}
+                    className={styles.checkBox}
+                />
+                <button onClick={deleteItem} className={styles.deleteButton}>
+                    X
+                </button>
+            </div>
         </div>
     );
 };
