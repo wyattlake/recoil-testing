@@ -25,7 +25,6 @@ export const TodoItem: React.FC<TodoItemProps> = (props) => {
             ...props.item,
             isComplete: !props.item.isComplete,
         });
-
         setTodoList(newList);
     };
 
